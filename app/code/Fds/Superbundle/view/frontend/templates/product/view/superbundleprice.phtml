@@ -1,0 +1,23 @@
+<?php /* @var $block \Fds\Superbundle\Block\Product\SuperbundleProduct */  ?>
+
+<?php
+
+/**
+ * Fds_Superbundle
+ * Fds - fdallserra 2018
+ * Product page :
+ *     if NO superBundle
+ *     show price on the top
+ */
+
+    $_product = $block->getProduct();
+
+    $bundles = array();
+    $bundles = $block->getParentBundles();
+?>
+
+<?php if (empty($bundles)): ?>
+
+   <?php echo $this->getBlockHtml('product.price.final'); ?>
+
+<?php endif; ?>

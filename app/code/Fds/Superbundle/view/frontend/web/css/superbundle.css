@@ -1,0 +1,26 @@
+.fds-superbundle-block{
+    clear: both;
+    float: none;
+}
+
+.boxs {
+     border: #0a6c9f 2px solid;
+     margin: 10px;
+     padding: 10px
+ }
+
+.superbundleaddtocart {
+    padding: 20px
+}
+
+.catalog-category-view .product-item-inner { display: none; }
+.catalogsearch-result-index .product-item-inner { display: none; }
+
+.cartOldPrice {
+    font-weight: normal;
+    text-decoration: line-through;
+}
+
+.cartPrice {
+
+}

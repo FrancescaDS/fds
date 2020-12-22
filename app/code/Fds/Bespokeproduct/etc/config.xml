@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Bespokeproduct
+* Fds - fdallserra 2018
+* Basic Configuration, enabled by default
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <bespokeproduct>
+            <general>
+                <enable>1</enable>
+                <display_text>Bespokeproduct</display_text>
+            </general>
+        </bespokeproduct>
+    </default>
+</config>

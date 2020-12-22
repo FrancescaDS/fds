@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Superbundle
+* Fds - fdallserra 2018
+* Product page type bundle (hide customize, show add to cart)
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Fds_Superbundle/css/superbundle.css"/>
+    </head>
+    <body>
+
+        <referenceBlock name="customize.button" display="false"/>
+
+        <referenceContainer name="product.info.main">
+            <block class="Fds\Superbundle\Block\Product\SuperbundleProduct"
+                   name="fds.view.superbundleaddtocartbundle" as="addtocart"
+                   template="Fds_Superbundle::product/view/superbundleaddtocartbundle.phtml"
+                   after="customize.button"/>
+
+        </referenceContainer>
+
+
+
+    </body>
+</page>

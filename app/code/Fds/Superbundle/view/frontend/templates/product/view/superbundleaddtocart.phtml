@@ -1,0 +1,217 @@
+<?php /* @var $block \Fds\Superbundle\Block\Product\SuperbundleProduct */  ?>
+
+<?php
+
+/**
+ * Fds_Superbundle
+ * Fds - fdallserra 2018
+ * Product page:
+ *     if superbundle
+ *     load the bundle boxs in the single product page (the superbundle product page)
+ */
+
+    $_product = $block->getProduct();
+    $buttonTitle = __('Add to Cart');
+
+    $isSuperBundle = false;
+    $bundles = array();
+    $bundles = $block->getParentBundles();
+    $isSuperBundle = (!(empty($bundles)));
+
+    $bespokeLink = '';
+    $bespokeLabel = '';
+    $bespokeproductIsEnabled = $this->bespokeproductIsEnabled();
+    if ($bespokeproductIsEnabled){
+        $blockBespoke = $this->getLayout()->createBlock("Fds\Bespokeproduct\Block\Product\Bespokeaddtocart");
+        $bespokeLink = $blockBespoke->getBespokeLink($_product);
+        $bespokeLabel = $blockBespoke->getBespokeLabel($_product);
+        if ($bespokeLink == '0'){
+            $bespokeLink = '';
+        }
+    }
+
+?>
+
+<?php if ($isSuperBundle): ?>
+
+    <?php
+
+    $buttonTitle = __('Add to Cart the Selected Box');
+
+    $objectManager = Magento\Framework\App\ObjectManager::getInstance();
+    $boxs = $objectManager->get('Magento\Catalog\Model\Product')
+        ->getCollection()
+        ->addAttributeToFilter('entity_id',$bundles)
+        ->setOrder('fdssb_sorting_box', 'ASC');
+
+    foreach($boxs as $box)
+    {
+        $dataBox = $block->getDataBox($box); ?>
+
+        <div class="boxs">
+            <p>
+                <input type="radio"
+                       id="box<?php echo $dataBox['entityId']; ?>"
+                       name="box"
+                       value="<?php echo $dataBox['entityId']; ?>"
+                       onClick="select_box();"
+                    <?php echo(($dataBox['selected']==true) ? ' checked="checked" ' : ''); ?> >
+
+                <label class="label" for="box"><span style="font-weight: bold "><?php echo $dataBox['name']; ?></span></label>
+
+                <input type="hidden" name="url_box<?php echo $dataBox['entityId']; ?>" value="<?php echo $dataBox['url_add_to_cart']; ?>">
+
+                <input type="hidden" name="info_box<?php echo $dataBox['entityId']; ?>" value="<?php echo $dataBox['short_description']; ?>">
+
+                <input type="hidden" name="image_box<?php echo $dataBox['entityId']; ?>" value="<?php echo $dataBox['image']; ?>">
+
+            </p>
+
+            <div class="price-box price-final_price" data-role="priceBox" data-product-id="4">
+                <?php if ($dataBox['reg_price'] <> $dataBox['price']): ?>
+                    <p class="minimal-price">
+                        <span class="price-container price-final_price tax weee">
+                            <span class="price-label"><?php echo (__('As low as')) ?></span>
+                            <span id="from-<?php echo $dataBox['entityId']; ?>" data-price-amount="<?php echo $dataBox['amount']; ?>" data-price-type="" class="price-wrapper ">
+                                <span class="price"><?php echo $dataBox['price']; ?></span>
+                            </span>
+                        </span>
+                        <span class="old-price">
+                            <span class="price-container price-final_price tax weee">
+                                <span class="price-label"><?php echo (__('Regular price')) ?></span>
+                                <span id="old-price-<?php echo $dataBox['entityId']; ?>" data-price-amount="<?php echo $dataBox['reg_amount']; ?>" data-price-type="" class="price-wrapper ">
+                                    <span class="price"><?php echo $dataBox['reg_price']; ?></span>
+                                </span>
+                            </span>
+                        </span>
+                    </p>
+                <?php else : ?>
+                    <p class="minimal-price">
+                        <span class="price-container price-final_price tax weee">
+                            <span class="price-label"><?php echo (__('Price')) ?></span>
+                            <span id="from-<?php echo $dataBox['entityId']; ?>" data-price-amount="<?php echo $dataBox['amount']; ?>" data-price-type="" class="price-wrapper ">
+                                <span class="price"><?php echo $dataBox['reg_price']; ?></span>
+                            </span>
+                        </span>
+                    </p>
+                <?php endif;  ?>
+            </div>
+        </div>
+
+     <?php
+    } ?>
+
+
+
+    <?php if ($bespokeLink <> ''): ?>
+        <?php echo $this->getLayout()
+            ->createBlock("Fds\Bespokeproduct\Block\Product\Bespokeaddtocart")
+            ->setLink($bespokeLink)
+            ->setLabel($bespokeLabel)
+            ->setTemplate("Fds_Bespokeproduct::product/view/bespokeaddtocart.phtml")
+            ->toHtml(); ?>
+
+    <?php else: ?>
+
+
+        <div class="box-tocart">
+            <div class="fieldset">
+
+                <!-- If needed quantity comment the hidden field and uncomment the div "field qty" -->
+                <input type="hidden" name="qty" value="1">
+                <!--<div class="field qty">
+                    <label class="label" for="qty"><span>Qty</span></label>
+                    <div class="control">
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               value="1"
+                               title="Qty"
+                               class="input-text qty"
+                               data-validate="{&quot;required-number&quot;:true,&quot;validate-item-quantity&quot;:{&quot;minAllowed&quot;:1}}"
+                        />
+                    </div>
+                </div>-->
+
+                <div class="action">
+                    <div class="superbundleaddtocart">
+                        <input name="addToCartBox"
+                               class="action primary tocart"
+                               id="addToCartBox"
+                               type="button"
+                               title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                               value="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                               onclick="add_to_cart_box()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <?php endif; ?>
+
+   <script>
+
+       window.onload=select_box;
+
+       function getSelectedBox(what)
+       {
+            var idBox = document.querySelector('input[name="box"]:checked').value;
+            var name_field = what + '_box' + idBox ;
+            var result = document.querySelector('input[name="'+name_field+'"]').value;
+
+            if (what == 'url'){
+                var url = result;
+                url = url + '&form_key='+ document.querySelector('input[name="form_key"]').value;
+                var qty = document.querySelector('input[name="qty"]').value;
+                if (qty == ''){
+                   qty = 1;
+                }
+                var result = url.replace('qty/1/?','qty/'+qty+'/?' );
+            }
+            return result;
+       }
+
+
+       function add_to_cart_box()
+        {
+            var box_url = getSelectedBox('url');
+            //alert (box_url);
+            window.location.href = box_url;
+        }
+
+
+        function select_box()
+        {
+            var box_info = getSelectedBox('info');
+
+            //write short description of the box
+            document.getElementById('bundle_info').innerHTML = box_info;
+
+            //change main image of the box
+            var box_image = getSelectedBox('image');
+            //alert (box_image);
+            document.getElementsByClassName("fotorama__img")[0].src = box_image;
+            document.getElementsByClassName("fotorama__img--full")[0].src = box_image;
+
+        }
+
+
+   </script>
+
+
+
+<?php else : ?>
+
+    <?php if ($bespokeLink <> ''): ?>
+        <?php echo $this->getLayout()
+            ->createBlock("Fds\Bespokeproduct\Block\Product\Bespokeaddtocart")
+            ->setLink($bespokeLink)
+            ->setLabel($bespokeLabel)
+            ->setTemplate("Fds_Bespokeproduct::product/view/bespokeaddtocart.phtml")
+            ->toHtml(); ?>
+    <?php else: ?>
+        <?php echo $this->getBlockHtml('product.info.addtocart'); ?>
+    <?php endif; ?>
+
+
+<?php endif; ?>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Superbundle
+* Fds - fdallserra 2018
+* Product page
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Fds_Superbundle/css/superbundle.css"/>
+    </head>
+    <body>
+
+        <referenceBlock name="product.price.final" display="false"/>
+
+        <referenceContainer name="product.info.price">
+
+            <block class="Fds\Superbundle\Block\Product\SuperbundleProduct"
+                   name="product.info.review"
+                   template="Fds_Superbundle::product/view/superbundlenoreviews.phtml"
+                   after="product.info.stock.sku" />
+
+            <block class="Fds\Superbundle\Block\Product\SuperbundleProduct"
+                   name="fds.view.superbundleprice"
+                   template="Fds_Superbundle::product/view/superbundleprice.phtml"
+                   after="product.price.final">
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.addtocart" display="false"/>
+
+        <referenceContainer name="product.info.form.content">
+            <block class="Fds\Superbundle\Block\Product\SuperbundleProduct"
+                   name="fds.view.superbundleaddtocart"
+                   template="Fds_Superbundle::product/view/superbundleaddtocart.phtml"
+                   after="product.info.addtocart">
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.form.content">
+            <block name="fds.view.superbundleinfo"
+                   class="Fds\Superbundle\Block\Product\SuperbundleProduct"
+                   after="fds.view.superbundleaddtocart"
+                   template="Fds_Superbundle::product/view/superbundleinfo.phtml" />
+        </referenceContainer>
+
+
+
+        <referenceContainer name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View\Description"
+                   name="product.info.description"
+                   template="Fds_Superbundle::product/view/superbundleattribute.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getDescription</argument>
+                    <argument name="at_code" xsi:type="string">description</argument>
+                    <argument name="css_class" xsi:type="string">description</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Details</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+
+
+    </body>
+</page>

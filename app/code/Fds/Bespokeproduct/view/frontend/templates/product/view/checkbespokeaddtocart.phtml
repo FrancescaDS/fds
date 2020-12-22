@@ -1,0 +1,30 @@
+<?php /* @var $block \Fds\Bespokeproduct\Block\Product\Bespokeaddtocart */  ?>
+
+<?php
+
+    $bespokeLink = '';
+    $superbundleIsEnabled = $this->superbundleIsEnabled();
+    if (!($superbundleIsEnabled)){
+        $_product = $block->getProduct();
+        $bespokeLink = $block->getBespokeLink($_product);
+        $bespokeLabel = $block->getBespokeLabel($_product);
+        if ($bespokeLink == '0'){
+            $bespokeLink = '';
+        }
+    }
+
+?>
+
+
+<?php if (!($superbundleIsEnabled)): ?>
+    <?php if ($bespokeLink <> ''): ?>
+        <?php echo $this->getLayout()
+            ->createBlock("Fds\Bespokeproduct\Block\Product\Bespokeaddtocart")
+            ->setLink($bespokeLink)
+            ->setLabel($bespokeLabel)
+            ->setTemplate("Fds_Bespokeproduct::product/view/bespokeaddtocart.phtml")
+            ->toHtml(); ?>
+    <?php else: ?>
+        <?php echo $this->getBlockHtml('product.info.addtocart'); ?>
+    <?php endif; ?>
+<?php endif; ?>

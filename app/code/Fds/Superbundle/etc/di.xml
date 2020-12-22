@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Superbundle
+* Fds - fdallserra 2018
+* Plugins to override
+* Cart for Simle product and Cart for Bundleproduct
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Cart\AbstractCart">
+        <plugin name="Fds-Superbundle-Block-Cart-SuperbundleCart"
+                type="Fds\Superbundle\Block\Cart\SuperbundleCart" sortOrder="1"/>
+    </type>
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="Fds-Superbundle-Plugin-DefaultItem"
+                type="Fds\Superbundle\Plugin\DefaultItem" disabled="false" sortOrder="10"/>
+    </type>
+</config>

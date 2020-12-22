@@ -1,0 +1,114 @@
+<?php /* @var $block \Fds\Superbundle\Block\Product\SuperbundleProduct */  ?>
+
+<?php
+
+/**
+ * Fds_Superbundle
+ * Fds - fdallserra 2018
+ * Product page bundle:
+ *     if box bundle
+ *     no configuration buton but add to cart button
+ */
+
+    $box_url = '';
+    $bundle = $block->getProduct();
+
+    $isBoxBundle = false;
+
+    $blockObj = $block->getLayout()->createBlock('Fds\Superbundle\Block\Cart\SuperbundleCartItem');
+    $isBoxBundle = $blockObj->isBoxBundle($bundle) . '';
+
+    if ($isBoxBundle) {
+        $buttonTitle = __('Add to Cart');
+        $dataBox = $block->getDataBox($bundle);
+        $box_url = $dataBox['url_add_to_cart'];
+    }
+
+    $bespokeLink = '';
+    $bespokeLabel = '';
+    $bespokeproductIsEnabled = $this->bespokeproductIsEnabled();
+    if ($bespokeproductIsEnabled){
+        $blockBespoke = $this->getLayout()->createBlock("Fds\Bespokeproduct\Block\Product\Bespokeaddtocart");
+        $bespokeLink = $blockBespoke->getBespokeLink($bundle);
+        $bespokeLabel = $blockBespoke->getBespokeLabel($bundle);
+        if ($bespokeLink == '0'){
+            $bespokeLink = '';
+        }
+    }
+
+?>
+
+<?php if ($isBoxBundle) :?>
+
+    <?php if ($bespokeLink == ''): ?>
+
+        <div class="box-tocart">
+            <div class="fieldset">
+                <div class="field qty">
+                    <label class="label" for="qty"><span>Qty</span></label>
+                    <div class="control">
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               value="1"
+                               title="Qty"
+                               class="input-text qty"
+                               data-validate="{&quot;required-number&quot;:true,&quot;validate-item-quantity&quot;:{&quot;minAllowed&quot;:1}}"
+                        />
+                    </div>
+                </div>
+                <div class="action">
+                    <input type="hidden" name="url_box" value="<?php echo $box_url; ?>">
+                    <div class="superbundleaddtocart">
+                        <input name="addToCartBox"
+                               class="action primary tocart"
+                               id="addToCartBox"
+                               type="button"
+                               title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                               value="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                               onclick="add_to_cart_box()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            function add_to_cart_box()
+            {
+                var box_url = document.querySelector('input[name="url_box"]').value;
+                box_url = box_url + '&form_key='+ document.querySelector('input[name="form_key"]').value;
+
+                var qty = document.querySelector('input[name="qty"]').value;
+                if (qty == ''){
+                    qty = 1;
+                }
+                var superbundle_url = box_url.replace('qty/1/?','qty/'+qty+'/?' );
+                window.location.href = superbundle_url;
+            }
+
+        </script>
+
+    <?php else : ?>
+        <?php echo $this->getLayout()
+            ->createBlock("Fds\Bespokeproduct\Block\Product\Bespokeaddtocart")
+            ->setLink($bespokeLink)
+            ->setLabel($bespokeLabel)
+            ->setTemplate("Fds_Bespokeproduct::product/view/bespokeaddtocart.phtml")
+            ->toHtml(); ?>
+    <?php endif; ?>
+
+<?php else : ?>
+
+    <?php if ($bespokeLink <> ''): ?>
+        <?php echo $this->getLayout()
+            ->createBlock("Fds\Bespokeproduct\Block\Product\Bespokeaddtocart")
+            ->setLink($bespokeLink)
+            ->setLabel($bespokeLabel)
+            ->setTemplate("Fds_Bespokeproduct::product/view/bespokeaddtocart.phtml")
+            ->toHtml(); ?>
+    <?php else: ?>
+        <?php echo $this->getBlockHtml('customize.button'); ?>
+    <?php endif; ?>
+
+<?php endif; ?>

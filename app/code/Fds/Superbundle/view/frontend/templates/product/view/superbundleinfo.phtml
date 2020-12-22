@@ -1,0 +1,30 @@
+<?php /* @var $block \Fds\Superbundle\Block\Product\SuperbundleProduct */  ?>
+
+<?php
+
+/**
+ * Fds_Superbundle
+ * Fds - fdallserra 2018
+ * Product page:
+ *     if box superbundle
+ *     add short description of bundle box selected
+ */
+
+$_product = $block->getProduct();
+
+$bundles = array();
+$bundles = $block->getParentBundles();
+
+?>
+
+<?php if (!(empty($bundles))): ?>
+    <div class="boxs">
+        <div class="product attribute description">
+            <div class="value">
+                <p>
+                    <span id="bundle_info"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

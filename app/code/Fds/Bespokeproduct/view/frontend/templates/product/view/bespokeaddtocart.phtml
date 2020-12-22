@@ -1,0 +1,18 @@
+<?php /* @var $block \Fds\Bespokeproduct\Block\Product\Bespokeaddtocart */  ?>
+
+<?php
+    $bespokeLink = $block->getLink();
+    $bespokeLabel = $block->getLabel();
+?>
+
+<div class="action">
+    <div class="superbundleaddtocart">
+        <input name="bespoke_addtocart"
+               class="action primary tocart"
+               id="bespoke_addtocart"
+               type="button"
+               title="<?= $bespokeLabel ?>"
+               value="<?= $bespokeLabel ?>"
+               onclick="window.location.href = '<?= $bespokeLink ?>'" />
+    </div>
+</div>

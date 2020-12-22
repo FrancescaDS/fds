@@ -1,0 +1,55 @@
+<?php /* @var $block \Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit */  ?>
+
+<?php
+
+/**
+ * Fds_Superbundle
+ * Fds - fdallserra 2018
+ * Cart button edit:
+ *     if bundle box change url to single product
+ */
+
+$url_single_product = '';
+$_item = $block->getItem();
+$product = $_item->getProduct();
+
+$blockObj= $block->getLayout()->createBlock('Fds\Superbundle\Block\Cart\SuperbundleCartItem');
+$url_single_product = $blockObj->getUrlSingleProduct($product);
+
+/* If quantity is active in the box page - AND check
+$id_single_product = $blockObj->getIdSingleProduct($product);
+ $url_single_product = $block->getUrl(
+    'checkout/cart/configure',
+    [
+        'id' => $block->getItem()->getId(),
+        'product_id' => $id_single_product
+    ]
+);
+*/
+
+if ( ($url_single_product == '') && ($block->isProductVisibleInSiteVisibility())){
+    $url_single_product = $block->getConfigureUrl();
+}
+
+/*if ($block->isProductVisibleInSiteVisibility())
+{
+  $url_single_product = $block->getConfigureUrl();
+} else {
+    $_item = $block->getItem();
+    $product = $_item->getProduct();
+
+    $blockObj= $block->getLayout()->createBlock('Fds\Superbundle\Block\Cart\SuperbundleCartItem');
+    $url_single_product = $blockObj->getUrlSingleProduct($product);
+}*/
+
+?>
+
+<?php if ($url_single_product <> ''): ?>
+    <a class="action action-edit"
+       href="<?= /* @escapeNotVerified */ $url_single_product ?>"
+       title="<?= $block->escapeHtml(__('Edit item parameters')) ?>">
+        <span>
+            <?= /* @escapeNotVerified */ __('Edit') ?>
+        </span>
+    </a>
+<?php endif ?>
