@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Customcatalog
+* Fds - fdallserra 2020
+* Product page
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="product.info.overview">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Fds_Customcatalog::product/view/attribute.phtml</argument>
+            </action>
+        </referenceBlock>
+
+
+        <referenceBlock name="product.info.description" >
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Fds_Customcatalog::product/view/attribute.phtml</argument>
+            </action>
+        </referenceBlock>
+
+
+
+    </body>
+
+</page>

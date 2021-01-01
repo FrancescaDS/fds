@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Customcatalog
+* Fds - fdallserra 2020
+* Basic Configuration, enabled by default
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <customcatalog>
+            <general>
+                <enable>1</enable>
+                <display_text>Customcatalog</display_text>
+            </general>
+        </customcatalog>
+    </default>
+</config>
