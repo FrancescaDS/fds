@@ -238,6 +238,8 @@ return [
         'Dotdigitalgroup_Email' => 1,
         'Dotdigitalgroup_Chat' => 1,
         'Fds_Bespokeproduct' => 1,
+        'Fds_Customcatalog' => 1,
+        'Fds_Modulecontact' => 1,
         'Fds_Superbundle' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
