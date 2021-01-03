@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Fds\Yourproduct\Api\QuestionRepositoryInterface" type="Fds\Yourproduct\Model\QuestionRepository"/>
+    <preference for="Fds\Yourproduct\Api\Data\QuestionInterface" type="Fds\Yourproduct\Model\Question"/>
+    <preference for="Fds\Yourproduct\Api\Data\QuestionSearchResultInterface" type="Fds\Yourproduct\Model\QuestionSearchResult"/>
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="fds_yourproduct_question_listing_data_source" xsi:type="string">Fds\Yourproduct\Model\ResourceModel\Question\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Fds\Yourproduct\Model\ResourceModel\Question\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">fdsyour_question</argument>
+            <argument name="resourceModel" xsi:type="string">Fds\Yourproduct\Model\ResourceModel\Question</argument>
+        </arguments>
+    </virtualType>
+
+
+
+</config>

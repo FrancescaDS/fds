@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Yourproduct
+* Fds - fdallserra 2018
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Answer</title>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceBlock name="menu">
+            <action method="setActive">
+                <argument name="itemId" xsi:type="string">Fds_Yourproduct::answer</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Fds\Yourproduct\Block\Adminhtml\Answer\Edit" name="answer_edit"/>
+			</referenceContainer>
+        <referenceContainer name="left">
+            <block class="Fds\Yourproduct\Block\Adminhtml\Answer\Edit\Tabs" name="answer_edit_tabs">
+                <block class="Fds\Yourproduct\Block\Adminhtml\Answer\Edit\Tab\Main" name="answer_edit_tab_main"/>
+                <block class="Fds\Yourproduct\Block\Adminhtml\Answer\Edit\Tab\Additional"
+                       name="answer_edit_tab_additional"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">answer_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">additional_section</argument>
+                    <argument name="block" xsi:type="string">answer_edit_tab_additional</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

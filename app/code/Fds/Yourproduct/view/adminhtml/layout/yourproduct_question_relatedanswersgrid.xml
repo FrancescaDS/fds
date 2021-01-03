@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Yourproduct
+* Fds - fdallserra 2018
+*/
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etclayout_generic.xsd">
+    <container name="root" label="Root">
+        <block class="Fds\Yourproduct\Block\Adminhtml\Question\Edit\Tab\RelatedAnswers"
+               name="fds_yourproduct_relatedanswers"/>
+    </container>
+</layout>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Yourproduct
+* Fds - fdallserra 2018
+* Admin
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="fds" translate="label" sortOrder="3000">
+            <label>Fds</label>
+        </tab>
+        <section id="yourproduct" translate="label" sortOrder="130"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Yourproduct</label>
+            <tab>fds</tab>
+            <resource>Fds_Yourproduct::yourproduct_config</resource>
+
+            <group id="general" type="text" translate="label" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration Yourproduct</label>
+                <comment>Explanation of Yourproduct. Attribute only for SIMPLE products</comment>
+                <field id="enable" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+                  </section>
+              </system>
+          </config>

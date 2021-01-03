@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Yourproduct
+* Fds - fdallserra 2018
+*/
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root" label="Root">
+        <block class="Fds\Yourproduct\Block\Adminhtml\Answer\Edit\Tab\RelatedProducts"
+               name="fds_yourproduct_relatedproducts"/>
+        <block class="Magento\Backend\Block\Widget\Grid\Serializer" name="relatedproducts_grid_serializer">
+            <arguments>
+                <argument name="grid_block" xsi:type="string">fds_yourproduct_relatedproducts</argument>
+                <argument name="callback" xsi:type="string">getSelectedProducts</argument>
+                <argument name="input_element_name" xsi:type="string">relatedproducts</argument>
+                <argument name="reload_param_name" xsi:type="string">products_related</argument>
+            </arguments>
+        </block>
+    </container>
+</layout>

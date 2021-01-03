@@ -1,0 +1,103 @@
+<?php
+/**
+ * Fds_Yourproduct
+ * Fds - fdallserra 2018
+ * Result
+ */
+
+    $answers = $this->getRequest()->getPostValue();
+    $productCollection = $block->getProductsResult($answers);
+
+    $filter = false;
+    foreach ($answers as $answer){
+        if(is_array($answer)){
+            $multi = $answer;
+            foreach ($multi as $single) {
+                if (strpos($single, 'fdsyour_') === 0) {
+                    $filter = true;
+                    break;
+                }
+            }
+        } else {
+            if (strpos($answer, 'fdsyour_') === 0) {
+                $filter = true;
+                break;
+            }
+        }
+    }
+
+?>
+
+<h1><?php echo __('Find Your Product Questionnaire') . " - " . __('Results') ?></h1>
+
+
+<?php
+if (!($filter)){
+    echo "<h2>" . __('You did not select any filter') . "</h2>";
+} else {
+
+    $howMany = $productCollection->count();
+    $title = ($howMany==1? __('Your product is'): __('Your products are'));
+
+    ?>
+
+    <h2><?php echo __('You are looking for') ?></h2>
+    <p>
+        <?php
+       /* foreach ($attribLabels as $label) {
+            echo '- ' . $this->escapeHtml($label) . '<br>';
+        }*/
+
+        foreach ($answers as $answer){
+            if(is_array($answer)){
+                $multiansw = "";
+                $multi = $answer;
+                foreach ($multi as $single) {
+                    if (strpos($single, 'fdsyour_') === 0) {
+                        if ($multiansw <> ""){
+                            $multiansw .= " / ";
+                        }
+                        $attribLabel = $block->getAttribLabel($single);
+                        $multiansw .= $attribLabel;
+                    }
+                }
+                if ($multiansw <> ""){
+                    echo '- ' . $this->escapeHtml($multiansw) . '<br>';
+                }
+            } else {
+                if (strpos($answer, 'fdsyour_') === 0) {
+                    $attribLabel = $block->getAttribLabel($answer);
+                    echo '- ' . $this->escapeHtml($attribLabel) . '<br>';
+                }
+            }
+        }
+
+
+        ?>
+    </p>
+
+    <h2><?= $title ?></h2>
+
+    <?php
+    if ($howMany == 0) {
+        echo(__('Sorry, no products found'));
+    } else {
+
+        foreach ($productCollection as $product) {
+            $productData = $block->getProductData($product->getId());
+            ?>
+            <div>
+                <a href="<?= $productData['url'] ?>"
+                   title="<?= $productData['name'] ?>"
+                ><?= $productData['name'] ?></a><br>
+                <?= $productData['short_description'] ?>
+            </div>
+
+            <?php
+        }
+    }
+}
+    ?>
+
+<br><br>
+<a href="<?php echo $block->getUrl('yourproduct') ?>"><?php echo __('Restart the Questionnaire') ?></a>

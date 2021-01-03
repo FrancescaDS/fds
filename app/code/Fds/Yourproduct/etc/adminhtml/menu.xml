@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Fds_Yourproduct::yourproduct" title="Fds YourProduct"
+             module="Fds_Yourproduct" sortOrder="51"
+             resource="Fds_Yourproduct::yourproduct"/>
+
+        <add id="Fds_Yourproduct::question" title="Questions"
+             module="Fds_Yourproduct" sortOrder="10"
+             action="yourproduct/question"
+             resource="Fds_Yourproduct::question"
+             parent="Fds_Yourproduct::yourproduct"/>
+
+        <add id="Fds_Yourproduct::answer" title="Answers"
+             module="Fds_Yourproduct" sortOrder="10"
+             action="yourproduct/answer"
+             resource="Fds_Yourproduct::answer"
+             parent="Fds_Yourproduct::yourproduct"/>
+
+
+        <add id="Fds_Yourproduct::yourproduct_configuration" title="Configuration"
+             module="Fds_Yourproduct" sortOrder="99"
+             action="adminhtml/system_config/edit/section/yourproduct"
+             resource="Fds_Yourproduct::yourproduct_configuration"
+             parent="Fds_Yourproduct::yourproduct"/>
+    </menu>
+</config>

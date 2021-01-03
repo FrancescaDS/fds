@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Yourproduct
+* Fds - fdallserra 2018
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Fds_Yourproduct/css/yourproduct.css"/>
+    </head>
+
+    <referenceContainer name="content">
+        <block class="Fds\Yourproduct\Block\Question"
+               name="yourproduct_question"
+               template="Fds_Yourproduct::result.phtml" />
+    </referenceContainer>
+
+</page>

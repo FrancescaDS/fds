@@ -1,0 +1,74 @@
+<?php
+/**
+ * Fds_Yourproduct
+ * Fds - fdallserra 2018
+ * Index
+ */
+
+$questions = $block->getQuestions();
+$howMany = count($questions);
+
+?>
+
+<h1><?php echo __('Find Your Product Questionnaire') ?></h1>
+
+<div class="form_wrapper">
+    <form action="<?php echo $block->getUrl('yourproduct/result') ?>" method="post" role="form">
+
+        <?php
+        $numQuest = 0;
+
+        foreach($questions as $question) {
+            $numQuest++;
+            $question_id = $question['question_id'];
+            $quest = $question['question'];
+            $multiSelect = $question['multiSelect'];
+
+            $answers = $block->getAnswers($question_id);
+                ?>
+
+                <fieldset class="msf_hide">
+                    <h2><?= __('Question') ?> <?= $numQuest ?><br>
+                        <?= $this->escapeHtml($quest) ?></h2>
+                    <div>
+                        <?php
+                        foreach ($answers as $answer) {
+                            $answerCode = $answer['attribute_code'];
+                            $answerLabel = $answer['frontend_label'];
+                            if ($multiSelect) { ?>
+                                <div>
+                                    <input type="checkbox" id="<?= $answerCode ?>" name="quest_<?= $question_id ?>[]"
+                                           value="<?= $answerCode ?>"/>
+                                    <label for="quest_<?= $question_id ?>"><?= $this->escapeHtml($answerLabel) ?></label>
+                                </div>
+                                <?php
+                            } else {
+                                ?>
+                                <div>
+                                    <input type="radio" id="<?= $answerCode ?>" name="quest_<?= $question_id ?>"
+                                           value="<?= $answerCode ?>"/>
+                                    <label for="quest_<?= $question_id ?>"><?= $answerLabel ?></label>
+                                </div>
+                                <?php
+                            }
+                        }
+                        ?>
+
+                    </div>
+                    <input type="button" name="back" value="<?= __('Back') ?>" onclick="msf_btn_back()">
+                    <input type="button" name="next" value="<?= __('Next') ?>" onclick="msf_btn_next()">
+                    <?php if ($numQuest == $howMany) { ?>
+                        <input type="submit" name="submit" value="<?php echo __('Show my products') ?>" onclick="">
+                    <?php } ?>
+                    <div class="msf_bullet_o"></div>
+                    <div class="msf_line"></div>
+                </fieldset>
+
+                <?php
+        }
+        ?>
+
+    </form>
+</div>
+
+<script src="<?= $block->getViewFileUrl('Fds_Yourproduct::js/yourproduct.js'); ?>"></script>
