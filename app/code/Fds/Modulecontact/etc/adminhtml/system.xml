@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Fds_Modulecontact
+* Fds - fdallserra 2019
+* Admin
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="contact" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+
+            <resource>Fds_Modulecontact::modulecontact_config</resource>
+            <group id="modulecontactgroup" type="text" translate="label" sortOrder="60"
+                   showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Contact Us form - Double Email Submission</label>
+                <comment>The module adds the verification email field in order to avoid typos</comment>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+        </section>
+
+  </system>
+</config>
