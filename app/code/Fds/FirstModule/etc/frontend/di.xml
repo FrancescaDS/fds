@@ -2,8 +2,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
     <!-- Agreement where assegna l'interface per il model -->
-    <preference for="Magento\Catalog\Api\ProductRepositoryInterface"
-                type="Fds\FirstModule\Model\CustomImplementation"/>
+    <!--<preference for="Magento\Catalog\Api\ProductRepositoryInterface"
+                type="Fds\FirstModule\Model\CustomImplementation"/>-->
 
     <!-- Argomenti di default -->
     <preference for="Fds\FirstModule\Api\Color"
@@ -50,12 +50,12 @@
     </type>
 
     <!-- PLUGIN BEFORE - PLUGIN AFTER - PLUGIN AROUND -->
-    <type name="Magento\Catalog\Model\Product">
+    <!--<type name="Magento\Catalog\Model\Product">
         <plugin name="before_after_around"
                 type="Fds\FirstModule\Plugin\PluginSolution"
                 sortOrder="10"
                 disabled="false" />
-    </type>
+    </type>-->
 
 
       <type name="Fds\FirstModule\Controller\Page\HelloWorld">
@@ -84,7 +84,7 @@
 
     </type>
 
-    <type name="Magento\Framework\Console\CommandListInterface">
+   <type name="Magento\Framework\Console\CommandListInterface">
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="hello_world2" xsi:type="object">Fds\FirstModule\Console\Command\HelloWorldCommand</item>

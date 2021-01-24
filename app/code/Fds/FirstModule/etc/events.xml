@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+<!--    evento dopo che l'ordine e' andato a buon fine-->
+    <event name="checkout_submit_all_after">
+        <observer name="log_text" instance="Fds\FirstModule\Observer\LogTextAtCheckout" />
+    </event>
+
+<!--evento creato, non di Magento-->
+    <event name="custom_event">
+        <observer name="greeting" instance="Fds\FirstModule\Observer\OurObserver" />
+    </event>
+</config>

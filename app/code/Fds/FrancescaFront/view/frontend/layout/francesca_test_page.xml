@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="template_magento_block"
+                   template="Fds_FrancescaFront::customMagento.phtml"></block>
+
+            <block class="Fds\FrancescaFront\Block\FrancescaDalla"
+                   name="template_francesca_block"
+                   template="Fds_FrancescaFront::custom.phtml">
+                <arguments>
+
+                    <argument name="show_hello" xsi:type="string">From layout to Templates</argument>
+
+                    <argument name="show_array" xsi:type="array">
+                        <item name="first" xsi:type="string">first item of array</item>
+                        <item name="second" xsi:type="string">second item of array</item>
+                        <item name="third" xsi:type="string">third item of array</item>
+                    </argument>
+
+                </arguments>
+            </block>
+
+            <block class="Fds\FrancescaFront\Block\FrancescaSerra"
+                   name="template_francesca_block2"
+                   template="Fds_FrancescaFront::custom2.phtml"
+                    cacheable="false">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">
+                        \Fds\FrancescaFront\ViewModel\FrancescaView
+                    </argument>
+                </arguments>
+            </block>
+
+        </referenceContainer>
+
+    </body>
+</page>

@@ -6,25 +6,27 @@ namespace Fds\RequestFlow\Controller\Page;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Controller\Result\RedirectFactory;
 
 
-// http://fds.local/noroutefound/page/responsetype
+// http://fds.local/noroutefound/page/responseredirectresult
 
-class ResponseType extends Action
+class ResponseRedirectResult extends Action
 {
-    protected $pageFactory;
+    protected $redirectFactory;
 
-    public function __construct(Context $context, PageFactory $pageFactory)
+    public function __construct(Context $context, RedirectFactory $redirectFactory)
     {
-        $this->pageFactory = $pageFactory;
+        $this->redirectFactory = $redirectFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        //Magento default frontend
-        return $this->pageFactory->create();
+        //Proper Redirect con cambio di URL
+        $result = $this->redirectFactory->create();
+        $result->setPath('noroutefound/page/customnoroute');
+        return $result;
     }
 
 
