@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Agreement where assegna l'interface per il model -->
+    <preference for="Magento\Catalog\Api\ProductRepositoryInterface"
+                type="Fds\FirstModule\Model\CustomImplementation"/>
+
+    <!-- Argomenti di default -->
+    <preference for="Fds\FirstModule\Api\Color"
+                type="Fds\FirstModule\Model\Yellow" />
+
+    <preference for="Fds\FirstModule\Api\Brightness"
+                type="Fds\FirstModule\Model\Medium" />
+
+    <preference for="Fds\FirstModule\Api\Size"
+                type="Fds\FirstModule\Model\Normal" />
+
+
+    <!-- Agreement where assegna l'interface per il model -->
+    <preference for="Fds\FirstModule\Api\PencilInterface"
+                type="Fds\FirstModule\Model\Pencil"/>
+
+<!-- creo virtual object per mettere high brightness (al posto di default Medium) when the color is yellow -->
+    <virtualType name="virtualType" type="Fds\FirstModule\Model\Yellow">
+        <arguments>
+            <argument name="brightness" xsi:type="object">Fds\FirstModule\Model\High</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Override argomenti di default -->
+    <type name="Fds\FirstModule\Model\Pencil" >
+        <arguments>
+            <argument name="color" xsi:type="object">virtualType</argument>
+            <argument name="size" xsi:type="object">Fds\FirstModule\Model\Big</argument>
+        </arguments>
+    </type>
+
+
+
+    <!-- Override argomenti di default -->
+    <type name="Fds\FirstModule\Model\Student" >
+        <arguments>
+            <argument name="name" xsi:type="string">Bob</argument>
+            <argument name="age" xsi:type="number">35</argument>
+            <argument name="scores" xsi:type="array">
+                <item name="maths" xsi:type="number">100</item>
+                <item name="programming" xsi:type="number">99</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- PLUGIN BEFORE - PLUGIN AFTER - PLUGIN AROUND -->
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="before_after_around"
+                type="Fds\FirstModule\Plugin\PluginSolution"
+                sortOrder="10"
+                disabled="false" />
+    </type>
+
+
+      <type name="Fds\FirstModule\Controller\Page\HelloWorld">
+
+          <!-- PLUGIN TEST SORTORDER -->
+        <plugin name="plugin_on_execute"
+                type="Fds\FirstModule\Plugin\PluginSolutionSortOrder"
+                sortOrder="10"
+                disabled="true"  />
+
+        <!--Il sortOrder piu' grande viene incapsulato nel sortOrder piu' piccolo-->
+        <plugin name="plugin_on_execute2"
+                type="Fds\FirstModule\Plugin\PluginSolutionSortOrder2"
+                sortOrder="20"
+                disabled="true"  />
+
+        <plugin name="plugin_on_execute3"
+                type="Fds\FirstModule\Plugin\PluginSolutionSortOrder3"
+                sortOrder="30"
+                disabled="true"  />
+
+          <!--Uso di Proxy-->
+          <arguments>
+              <argument name="heavyService" xsi:type="object">Fds\FirstModule\Model\HeavyService\Proxy</argument>
+          </arguments>
+
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="hello_world2" xsi:type="object">Fds\FirstModule\Console\Command\HelloWorldCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="hello_world" xsi:type="object">Fds\FirstModule\Console\Command\HelloWorld</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
