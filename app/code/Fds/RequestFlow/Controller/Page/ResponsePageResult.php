@@ -9,9 +9,9 @@ use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\View\Result\PageFactory;
 
 
-// http://fds.local/noroutefound/page/responsetype
+// http://fds.local/noroutefound/page/responsepageresult
 
-class ResponseType extends Action
+class ResponsePageResult extends Action
 {
     protected $pageFactory;
 

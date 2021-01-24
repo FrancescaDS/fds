@@ -1,0 +1,37 @@
+<?php /* @var $block \Fds\FrancescaFront\Block\FrancescaDalla */  ?>
+
+<?php
+
+$content = $block->getContenuto();
+$array = $block->helloArray();
+
+?>
+
+<div style="border-style: solid;
+  border-color: #99cb84;
+  border-width: 1px;
+  margin: 10px">
+    <h2>custom.phtml >> block FrancescaDalla</h2><br>
+    <?php  echo $content  ?>
+    <br>
+
+    <?php foreach ($array as $hello):  ?>
+        <ul>
+            <li><?php  echo $hello  ?></li>
+        </ul>
+    <?php  endforeach; ?>
+
+    <br>
+    <!--prende il contenuto del layout show_hello con
+     $this (intente il layout) get e "_" diventa maiuscolo getShowHello-->
+    <?php  echo $this->getShowHello();  ?>
+    <br>
+
+    <br>
+    <?php  print_r($this->getShowArray());  ?>
+
+    <br>numero random=<?php echo rand(1,100); ?>
+</div>
+
+
+

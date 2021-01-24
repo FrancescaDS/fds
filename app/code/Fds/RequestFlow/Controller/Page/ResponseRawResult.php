@@ -6,25 +6,26 @@ namespace Fds\RequestFlow\Controller\Page;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Controller\Result\Raw;
 
 
-// http://fds.local/noroutefound/page/responsetype
+// http://fds.local/noroutefound/page/responserawresult
 
-class ResponseType extends Action
+class ResponseRawResult extends Action
 {
-    protected $pageFactory;
+    protected $raw;
 
-    public function __construct(Context $context, PageFactory $pageFactory)
+    public function __construct(Context $context, Raw $raw)
     {
-        $this->pageFactory = $pageFactory;
+        $this->raw = $raw;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        //Magento default frontend
-        return $this->pageFactory->create();
+        //ritorna una stringa
+        $result = $this->raw->setContents('Hello world');
+        return $result;
     }
 
 

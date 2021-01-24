@@ -1,0 +1,49 @@
+<?php /* @var $block \Fds\FrancescaFront\Block\FrancescaSerra */  ?>
+<?php /* @var $viewModel \Fds\FrancescaFront\ViewModel\FrancescaView */  ?>
+
+<div style="border-style: solid;
+  border-color: #99cb84;
+  border-width: 1px;
+  margin: 10px">
+    <h2>custom2.phtml >> block FrancescaSerra e viewModel FrancescaView</h2><br>
+    <?php  echo $block->getProductName();  ?>
+
+
+    <div style="border-style: solid;
+  border-color: #e02b27;
+  border-width: 1px;
+  margin: 10px">
+        uso del model<br>
+        <?php
+
+        //si potrebbe usare solo il ModelView senza mantenere il block, lasciando il block vuoto
+
+
+        //creo istanza del viewmodel del blocco, dichiarato nel layout come argomento
+        $viewModel = $block->getData('view_model');
+
+        $content = $viewModel->getContenutoMod();
+        $array = $viewModel->helloArrayMod();
+        $productNameFromModel = $viewModel->getProductName();
+        ?>
+        <?php  echo $content  ?>
+        <br>
+
+        <?php foreach ($array as $hello):  ?>
+            <ul>
+                <li><?php  echo $hello  ?></li>
+            </ul>
+        <?php  endforeach; ?>
+        <?php  echo $productNameFromModel  ?>
+
+    </div>
+
+<!--    ho bisogno di avere un dato nuovo al rwfresh della pagina
+    quindi devo mettere nel block nel layout cacheable=false
+    in realta' basta che ci sia un block con cacheable=false
+    per rendere non cacheable tutta la pagina-->
+    <br>numero random=<?php echo rand(1,100); ?>
+</div>
+
+
+
