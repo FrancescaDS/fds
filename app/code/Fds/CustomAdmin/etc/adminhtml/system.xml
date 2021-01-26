@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Custom_Admin" translate="label" sortOrder="120" >
+            <label>Custom Admin</label>
+        </tab>
+        <section id="Firstsection" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>First Section</label>
+            <tab>Custom_Admin</tab>
+            <resource>Fds_CustomAdmin::parent</resource>
+            <group id="Firstgroup" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>First Group</label>
+                <field id="Firstfield" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" type="text" sortOrder="100">
+                    <label>First Text Field</label>
+                </field>
+                <field id="Secondfield" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" type="select" sortOrder="100">
+                    <label>Second Field Select</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="Thirdfield" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" type="multiselect" sortOrder="100">
+                    <label>Third Field Multiselect</label>
+                    <source_model>Fds\CustomAdmin\Model\AdminArray</source_model>
+                </field>
+                <field id="Fourthfield" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" type="select" sortOrder="100">
+                    <label>Fourth Field Select</label>
+                    <source_model>Fds\CustomAdmin\Model\AdminArray</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

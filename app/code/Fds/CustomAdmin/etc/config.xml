@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <!--In order to add default value in adminhtm/system-->
+    <default>
+        <Firstsection>
+            <Firstgroup>
+                <Firstfield>This is default value</Firstfield>
+                <Secondfield>1</Secondfield>
+            </Firstgroup>
+        </Firstsection>
+    </default>
+</config>

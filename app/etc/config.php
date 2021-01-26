@@ -239,6 +239,7 @@ return [
         'Dotdigitalgroup_Chat' => 1,
         'Fds_Attribute' => 1,
         'Fds_Bespokeproduct' => 1,
+        'Fds_CustomAdmin' => 1,
         'Fds_Customcatalog' => 1,
         'Fds_Database' => 1,
         'Fds_FirstModule' => 1,

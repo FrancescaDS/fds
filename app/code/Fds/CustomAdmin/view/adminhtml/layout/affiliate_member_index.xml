@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+questo layout per la pagina http://fds.local/admin_fds/affiliate/member/index
+    affiliate/member/index diventa il nome del file con _ al posto dei /-->
+
+<!--uiComponents per la mettere la lista-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="affiliate_member_listing" />
+        </referenceContainer>
+    </body>
+</page>
