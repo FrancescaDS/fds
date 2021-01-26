@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--Per aggiungere un nuovo menu a sinistra nell'admin-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Fds_CustomAdmin::member" title="Member" translate="title"
+             module="Fds_CustomAdmin" sortOrder="200" resource="Fds_CustomAdmin::parent"  />
+        <add id="Fds_CustomAdmin::affiliate_member" title="Affiliate Member" translate="title"
+             module="Fds_CustomAdmin" sortOrder="200" parent="Fds_CustomAdmin::member" action="affiliate/member/index" resource="Fds_CustomAdmin::parent" />
+    </menu>
+</config>
