@@ -3,7 +3,7 @@
 
 namespace Fds\Database\Api\Data;
 
-use Magento\Framework\Api\Search\SearchResultsInterface;
+use Magento\Framework\Api\SearchResultsInterface;
 
 interface AffiliateMemberSearchResultInterface extends SearchResultsInterface
 {

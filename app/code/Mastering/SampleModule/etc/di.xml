@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- per aggiungere il comando alla Magento commandline Interface (terminal)
+    aggiunge un item usand la classe AddItem specificata nell'argument -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="masteringAddItem" xsi:type="object">Mastering\SampleModule\Console\Command\AddItem</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <preference for="Mastering\SampleModule\Api\Data\ItemInterface" type="Mastering\SampleModule\Model\Item"/>
+    <preference for="Mastering\SampleModule\Api\ItemRepositoryInterface" type="Mastering\SampleModule\Model\ItemRepository"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mastering_items_grid_data_source" xsi:type="string">Mastering\SampleModule\Model\ResourceModel\Item\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--riempie il campo delle tax della nuova colonna aggiunta per farlo vedere nell'elenco degli ordini -->
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="base_tax_amount" xsi:type="string">sales_order.base_tax_amount</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Uso del file /var/log/debug_custom.log come debug log
+    In questo modo e' per tutte le funzionalita' del magento Framework-->
+    <!--<preference for="Magento\Framework\Logger\Handler\Debug" type="Mastering\SampleModule\Model\DebugHandler"/>-->
+<!--Cosi invece lo usa solo per il comando per la console-->
+    <!--si crea una specie di classe, ma virtuale-->
+    <virtualType name="MasteringLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">main</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Magento\Framework\Logger\Handler\System</item>
+                <item name="debug" xsi:type="object">Mastering\SampleModule\Model\DebugHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!--qui si assegna la classe virtuale per AddItem comand console-->
+    <!--Uso della classe AddItemWithLogger con logger-->
+    <!--<type name="\Mastering\SampleModule\Console\Command\AddItem">
+        <arguments>
+            <argument name="logger" xsi:type="object">MasteringLogger</argument>
+        </arguments>
+    </type>-->
+    <!--qui usa l'observer con l'evento-->
+    <type name="Mastering\SampleModule\Observer\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">MasteringLogger</argument>
+        </arguments>
+    </type>
+
+    <type name="Mastering\SampleModule\Console\Command\AddItem">
+        <plugin name="console_login" type="\Mastering\SampleModule\Plugin\Logger" />
+    </type>
+
+</config>

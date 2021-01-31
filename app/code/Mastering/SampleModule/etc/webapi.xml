@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<routes>
+
+    <!-- http://fds.local/rest/V1/mastering-->
+    <route url="/V1/mastering" method="GET">
+        <service class="Mastering\SampleModule\Api\ItemRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>
