@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!--Aggiunge la nuova reference (voce) con 'Mastering' come titolo al menu di sx del backend
+        fa riferimento alla stessa resource in acl.xml
+        l'action dice la URL che deve aprire http://fds.local/admin_fds/mastering -->
+        <add id="Mastering_SampleModule::mastering" title="Mastering"
+             module="Mastering_SampleModule" resource="Mastering_SampleModule::mastering"
+             translate="title" sortOrder="900" action="mastering" />
+    </menu>
+</config>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+
+                <!--Aggiunge la nuova reference (voce) con 'Mastering' come titolo al menu di sx del backend
+        fa riferimento al file adminhtml/menu.xml -->
+                <resource id="Mastering_SampleModule::mastering" title="Mastering"
+                          translate="title" sortOrder="900" />
+            </resource>
+        </resources>
+    </acl>
+</config>

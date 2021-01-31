@@ -1,0 +1,11 @@
+<?php
+//si specifica qual e' il block del file cosi' si possono usare le funzionalita' del blocco
+/** @var \Mastering\SampleModule\Block\Hello $block */
+?>
+
+<!--'label' is an argument passed by the layout, come from the block inside $data-->
+<b>argument from the template <?php echo $block->getLabel(); ?></b>
+
+<?php foreach ($block->getItems() as $item): ?>
+<p><?php echo $item->getName(); ?>: <?php echo $item->getDescription(); ?> </p>
+<?php endforeach; ?>

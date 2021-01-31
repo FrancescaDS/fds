@@ -1,0 +1,10 @@
+<?php
+//si specifica qual e' il block del file cosi' si possono usare le funzionalita' del blocco
+/** @var \Mastering\SampleModule\Block\Classforblock $block */
+?>
+
+contenuto templateforblock.phtml<br><br>
+
+<?php foreach ($block->getItems() as $item): ?>
+    <p><?php echo $item->getName(); ?>: <?php echo $item->getDescription(); ?> </p>
+<?php endforeach; ?>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <!--"mastering_command" evento citato nell'execute di AddItem.php command-->
+    <!--<event name="mastering_command">
+        <observer name="mastering_logger" instance="Mastering\SampleModule\Observer\Logger" />
+    </event>-->
+
+    <!--"mastering_sample_item" evento prefix, con '_save_after' e' chiamato dopo il salvataggio  -->
+    <event name="mastering_sample_item_save_after">
+        <observer name="mastering_logger" instance="Mastering\SampleModule\Observer\Logger" />
+    </event>
+
+</config>

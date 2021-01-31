@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="masteringAddItem" instance="Mastering\SampleModule\Cron\AddItem" method="execute">
+
+            <!--farlo eseguire ogni minuto: ogni asterisco dice: ogni minuto, ogni giorno, ogni mese, ogni giorno della settimana-->
+            <!--<schedule>* * * * *</schedule>-->
+
+            <!--cosi invece prende i valori dal backend
+            section id/group id/field id -->
+            <config_path>mastering/general/cron_expression</config_path>
+        </job>
+    </group>
+
+</config>
