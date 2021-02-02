@@ -254,6 +254,7 @@ return [
         'MSP_TwoFactorAuth' => 1,
         'Mastering_SampleModule' => 1,
         'Pixelpro_Helloworld' => 0,
+        'Sivaschenko_LuckyOrder' => 1,
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
